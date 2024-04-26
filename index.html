@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Transition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="card-container">
+        <div id="card1" class="card">
+            <div class="container">
+                <div class="button-box">
+                    <button id="toggleButton1" class="oval-button" onclick="toggleButton(1)"></button>
+                    <button id="toggleButton2" class="oval-button" onclick="toggleButton(2)"> </button>
+                </div>
+                <div class="slider-box">
+                    <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+                </div>
+            </div>
+            <div class="bottom-container">
+                <button class="left-button " onclick="nextCard()"><img src="./arrow-left.png" alt=""></button>
+                <p> DJS </p>
+                <button class="right-button" onclick="previousCard()"><img src="./arrow-right.png" alt=""></button>
+            </div>
+        </div>
+        <div id="card2" class="card">
+            <div class="container">
+                <div class="left-container">
+                    <button class="plusbutton" onclick="lightplus()"><img src="./bulb_on.png" alt=""></button>
+
+                    <div class="slider_container">
+                        <input type='range' orient="vertical" value="0" min="0" max="100" class='slider1'
+                            id="myRange1"></input>
+                        <input type='range' orient="vertical" value="0" min="0" max="100" class='slider2'
+                            id="myRange2"></input>
+
+                    </div>
+                    <button class="minusbutton" onclick="lightminus()"><img src="bulb_off.png" alt=""></button>
+                </div>
+                <div class="right-container">
+                    <button class="plusbutton" onclick="increaseIntensity()"><img src="./fan1.png" alt=""></button>
+                    <div class="dottedslider_container">
+                        <div id="l1" class="line" data-value=0></div>
+                        <div id="l2" class="line" data-value=0></div>
+                        <div id="l3" class="line" data-value=0></div>
+                        <div id="l4" class="line" data-value=0></div>
+                        <div id="l5" class="line" data-value=0></div>
+                        <div id="l6" class="line" data-value=0></div>
+                        <div id="l7" class="line" data-value=0></div>
+                    </div>
+                    <button class="minusbutton" onclick="decreaseIntensity()"><img src="./fan2.png" alt=""></button>
+                </div>
+            </div>
+            <div class="bottom-container">
+                <button class="left-button " onclick="nextCard()"><img src="./arrow-left.png" alt=""></button>
+                <p> DJS </p>
+                <button class="right-button" onclick="previousCard()"><img src="./arrow-right.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        //  ---------------------------Javascript for second card-------------------------
+        const slider = document.getElementById("myRange");
+
+        slider.oninput = function () {
+            const opacity = this.value / 100;
+            console.log("slided the slider");
+            this.style.backgroundColor = `rgba(71, 238, 243, ${opacity})`;
+            console.log(opacity)
+
+        }
+
+        function toggleButton(buttonIndex) {
+            var button1 = document.getElementById("toggleButton1");
+            var button2 = document.getElementById("toggleButton2");
+
+            if (buttonIndex === 1) {
+                slider.value = 100;
+                button1.classList.toggle("active");
+                button2.classList.remove("active")
+            }
+            else if (buttonIndex === 2) {
+                slider.value = 0;
+                button2.classList.toggle("active");
+                button1.classList.remove("active")
+            }
+            const opacity = slider.value / 100;
+            slider.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+        }
+
+
+        //  ---------------------------Javascript for changing card---------------------
+
+        const card1 = document.getElementById('card1');
+        const card2 = document.getElementById('card2');
+
+
+        function nextCard() {
+            card1.style.transform = 'translateX(-100%)';
+            card2.style.transform = 'translateX(0)';
+            card1.style.transform = 'translateX(0)';
+            card2.style.transform = 'translateX(100%)';
+        }
+
+        function previousCard() {
+            card1.style.transform = 'translateX(0)';
+            card2.style.transform = 'translateX(100%)';
+            card1.style.transform = 'translateX(-100%)';
+            card2.style.transform = 'translateX(0)';
+        }
+
+        //  ---------------------------Javascript for first card---------------------
+
+        let s1 = document.getElementById("myRange1");
+        let s2 = document.getElementById("myRange2");
+
+        s1.oninput = function () {
+            s2.value = this.value;
+            const opacity = this.value / 100;
+            s1.style.backgroundColor = `rgba(71, 238, 243, ${opacity})`;
+            s2.style.backgroundColor = `rgba(71, 238, 243, ${opacity})`;
+            s1.style.boxShadow = `box-shadow: 0px 0px 2px 2px rgba(140, 235, 250, ${opacity});`
+            s2.style.boxShadow = `box-shadow: 0px 0px 2px 2px rgba(140, 235, 250, ${opacity});`
+        }
+        function lightminus() {
+            s1.stepDown(10);
+            s2.stepDown(10);
+            const opacity = s1.value / 100;
+            s1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            s2.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            s1.style.boxShadow = ` 0px 0px 2px 2px rgba(140, 235, 250, ${opacity});`
+            s2.style.boxShadow = ` 0px 0px 2px 2px rgba(140, 235, 250, ${opacity});`
+        }
+
+        function lightplus() {
+            s1.stepUp(10);
+            s2.stepUp(10);
+            const opacity = s1.value / 100;
+            s1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            s2.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            s1.style.boxShadow = `box-shadow: 0px 0px 2px 2px rgba(140, 235, 250, ${opacity});`
+            s2.style.boxShadow = `box-shadow: 0px 0px 2px 2px rgba(140, 235, 250, ${opacity});`
+        }
+
+        // Javascript for right slider------------------------------------------
+
+        let line1 = document.getElementById("l1");
+        let line2 = document.getElementById("l2");
+        let line3 = document.getElementById("l3");
+        let line4 = document.getElementById("l4");
+        let line5 = document.getElementById("l5");
+        let line6 = document.getElementById("l6");
+        let line7 = document.getElementById("l7");
+        let count = 0;
+        function increaseIntensity() {
+            if (count >= 7) return;
+            count = count + 1;
+            console.log(count);
+            line1.dataset.value = Number(line1.dataset.value) + 30;
+            console.log(line1.dataset.value);
+            let opacity = line1.dataset.value / 100;
+            line1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            if (count >= 2) {
+                line2.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+            if (count >= 3) {
+                line3.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+            if (count >= 4) {
+                line4.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+            if (count >= 5) {
+                line5.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+            if (count >= 6) {
+                line6.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+            if (count === 7) {
+                line7.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+        }
+        function decreaseIntensity() {
+            if (count <= 0) return;
+            line1.dataset.value = Number(line1.dataset.value) - 30;
+            let opacity = line1.dataset.value / 100;
+            if (count === 7) {
+                line7.style.backgroundColor = "lightgrey";
+                line6.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line5.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line4.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line3.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line2.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            } else if (count === 6) {
+                line6.style.backgroundColor = "lightgrey";
+                line5.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line4.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line3.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line2.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            } else if (count === 5) {
+                line5.style.backgroundColor = "lightgrey";
+                line4.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line3.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line2.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+
+            } else if (count === 4) {
+                line4.style.backgroundColor = "lightgrey";
+                line3.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line2.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+
+            else if (count === 3) {
+                line3.style.backgroundColor = "lightgrey";
+                line2.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+                line1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+
+            else if (count === 2) {
+                line2.style.backgroundColor = "lightgrey";
+                line1.style.backgroundColor = `rgba(73, 238, 243, ${opacity})`;
+            }
+            else if (count === 1) {
+                line1.style.backgroundColor = "lightgrey";
+            }
+            count = count - 1;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,285 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.slider_container input[type=range] {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+}
+
+.card-container {
+    position: relative;
+    width: 450px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 30px;
+
+}
+
+.card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111111;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    transition: transform 0.5s ease-in-out;
+    box-shadow: inset 0px 0px 15px 11px rgba(255, 255, 255, 0.4);
+}
+
+.container {
+    height: 300px;
+    width: 300px;
+    background-color: #000000;
+    background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: inset 5px 15px 13px 0px rgba(255, 255, 255, 0.2);
+}
+
+.bottom-container {
+    height: 80px;
+    width: 300px;
+    border-radius: 30px;
+    background-color: #111111;
+    background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    box-shadow: inset 5px 10px 13px 0px rgba(255, 255, 255, 0.2);
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 60px;
+    background-color: #373535;
+    background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
+    height: 250px;
+    width: 80px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #373535;
+    background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
+    height: 250px;
+    width: 80px;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 50px;
+    gap: 25px;
+
+}
+
+.dottedslider_container {
+    transform: rotateX(180deg);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.line {
+    background-color: rgb(150, 146, 146);
+    height: 10px;
+    width: 10px;
+    border-radius: 3px;
+    animation: transitionIn 1s;
+
+}
+
+.slider_container {
+    height: 150px;
+    width: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+}
+
+p {
+    font-weight: 400px;
+    color: white;
+    font-family: monospace;
+    font-size: 30px;
+    letter-spacing: 4px;
+}
+
+.slider1,
+.slider2 {
+    -webkit-appearance: none;
+    width: 5px;
+    height: 120px;
+    background-color: lightgray;
+    border-radius: 50px;
+    margin: 3px;
+    animation: transitionIn 1s ease-in-out;
+    z-index: 0;
+    background-color: rgb(150, 146, 146);
+}
+
+.slider1::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    translate: -8.5px;
+    border-radius: 50%;
+    background: url('./small_button.png') center center no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    margin-top: -3px;
+    z-index: 50;
+}
+
+.slider2::-webkit-slider-thumb {
+    max-width: 10px;
+    max-height: 10px;
+    translate: 8px;
+    visibility: hidden;
+
+}
+
+.plusbutton,
+.minusbutton,
+.left-button,
+.right-button {
+    background-color: #555555;
+    background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    color: white;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.2s ease;
+}
+
+img {
+    width: 25px
+}
+
+@keyframes transitionIn {
+    0% {
+        background-color: lightgrey;
+    }
+
+    50% {
+        background-color: rgba(73, 238, 243, 0.8);
+    }
+
+    100% {
+        background-color: lightgray(73, 238, 243, 0.1);
+    }
+}
+
+.button-box {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-left: 90px;
+}
+
+.slider-box {
+    transform: rotate(270deg);
+    border: #222222 solid 25px;
+    border-radius: 500px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 23px;
+    background-color: #36d5d5;
+    border-radius: 500px;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url('./slider-thumb.png');
+    background-size: cover;
+    cursor: pointer;
+    margin-top: -3px;
+}
+
+.oval-button {
+    background-color: #555555;
+    background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+    width: 60px;
+    height: 90px;
+    border-radius: 50px;
+    color: white;
+    font-size: 16px;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.2s ease;
+}
+
+.oval-button.active {
+    transform: scale(0.95);
+    border-color: #47EEF3;
+}
+
+button:focus {
+    box-shadow: inset 0px 0px 10px #333131fb;
+}
+
+.oval-button.active:before {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 32px;
+    border: 3px solid #47EEF3;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
